@@ -1,6 +1,9 @@
+import 'package:coba1/register/konsultasi_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'card.dart';
+import 'konsultasi_page.dart';
+import 'catatan_page.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -9,49 +12,15 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 2;
-  bool _isHomeHovered = false; // Untuk efek hover & klik pada tombol Home
+  bool _isHomeHovered = false;
 
   final List<Widget> _pages = [
-    Center(child: _buildPageText('Catatan Menu')),
-    CardAwal(),
+    CatatanPage(),
+    Center(child: _buildPageText('Jelajahi')),
     Center(child: _buildPageText('Beranda')),
-    _buildConsultationList(),
+    KonsultasiPage(),
     Center(child: _buildPageText('Profil')),
   ];
-
-  static Widget _buildConsultationList() {
-    List<Map<String, String>> consultations = [
-      {"name": "Dr. Andi", "topic": "Gizi Seimbang"},
-      {"name": "Dr. Rina", "topic": "Diet Keto"},
-      {"name": "Dr. Budi", "topic": "Manajemen Berat Badan"},
-      {"name": "Dr. Siti", "topic": "Diet Vegetarian"},
-      {"name": "Dr. Andi", "topic": "Gizi Seimbang"},
-      {"name": "Dr. Rina", "topic": "Diet Keto"},
-      {"name": "Dr. Budi", "topic": "Manajemen Berat Badan"},
-      {"name": "Dr. Siti", "topic": "Diet Vegetarian"},
-    ];
-
-    return ListView.separated(
-      padding: EdgeInsets.all(16),
-      itemCount: consultations.length,
-      separatorBuilder: (context, index) => Divider(),
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.purple.shade100,
-            child: Icon(Icons.person, color: Colors.purple.shade700),
-          ),
-          title: Text(consultations[index]["name"]!,
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text(consultations[index]["topic"]!),
-          // trailing: Icon(Icons.chat_bubble_outline, color: Colors.purple),
-          onTap: () {
-            // Aksi ketika diklik (misalnya navigasi ke halaman chat)
-          },
-        );
-      },
-    );
-  }
 
   void _onItemTapped(int index) {
     setState(() {
